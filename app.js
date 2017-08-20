@@ -17,5 +17,7 @@ const io = require('socket.io').listen(server);
 server.listen(process.env.PORT);
 
 const radioFrequenceControl = require('home-center-radio-frequence-control');
+const musicControl = require('home-center-music-control');
 
 radioFrequenceControl.initSocket(io);
+musicControl.initSocket(io);

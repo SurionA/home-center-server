@@ -2,7 +2,7 @@
 
 require('dotenv-safe').load({
     path: `${__dirname}/../config/.env`,
-    ample: `${__dirname}/../config/.env.example`,
+    sample: `${__dirname}/../config/.env.example`,
     allowEmptyValues: false,
 });
 const socket = require('socket.io-client')(`http://${process.env.IP}:${process.env.PORT}`);

@@ -18,7 +18,8 @@
   },
   "dependencies": {
     "dotenv-safe": "^4.0.4",
-    "home-center-radio-frequence-control": "SurionA/home-center-radio-frequence-control.git",
+    "home-center-music-control": "github:SurionA/home-center-music-control",
+    "home-center-radio-frequence-control": "github:SurionA/home-center-radio-frequence-control",
     "socket.io": "^2.0.3",
     "socket.io-client": "^2.0.3"
   },
