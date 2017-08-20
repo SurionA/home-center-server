@@ -1,0 +1,32 @@
+{
+  "name": "home-center-server",
+  "version": "1.0.0",
+  "description": "NodeJS server to manage Home Center",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SurionA <frere.maxime@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SurionA/home-center-server.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "8.4.0",
+    "npm": "5.3.0"
+  },
+  "dependencies": {
+    "dotenv-safe": "^4.0.4",
+    "home-center-radio-frequence-control": "SurionA/home-center-radio-frequence-control.git",
+    "socket.io": "^2.0.3",
+    "socket.io-client": "^2.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^4.5.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.2.1"
+  }
+}
