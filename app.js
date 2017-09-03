@@ -18,6 +18,8 @@ server.listen(process.env.PORT);
 
 const radioFrequenceControl = require('home-center-radio-frequence-control');
 const musicControl = require('home-center-music-control');
+const hydrometriesArduino = require('home-center-hydrometries-arduino');
 
-radioFrequenceControl.initSocket(io);
+hydrometriesArduino.initSocket(io);
 musicControl.initSocket(io);
+radioFrequenceControl.initSocket(io);

@@ -18,16 +18,19 @@
   },
   "dependencies": {
     "dotenv-safe": "^4.0.4",
+    "home-center-hydrometries-arduino": "github:SurionA/home-center-hydrometries-arduino",
     "home-center-music-control": "github:SurionA/home-center-music-control",
     "home-center-radio-frequence-control": "github:SurionA/home-center-radio-frequence-control",
     "socket.io": "^2.0.3",
-    "socket.io-client": "^2.0.3"
+    "socket.io-client": "^2.0.3",
+    "string_decoder": "^1.0.3",
+    "winston": "^2.3.1"
   },
   "devDependencies": {
-    "eslint": "^4.5.0",
+    "eslint": "^4.6.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.2.1"
+    "eslint-plugin-react": "^7.3.0"
   }
 }
