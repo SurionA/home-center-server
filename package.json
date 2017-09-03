@@ -20,7 +20,7 @@
     "axios": "^0.16.2",
     "cron": "^1.2.1",
     "dotenv-safe": "^4.0.4",
-    "home-center-hydrometries-arduino": "/Users/maximefrere/Sites/maxime/homeCenter/home-center-hydrometry-arduino",
+    "home-center-hydrometries-arduino": "github:SurionA/home-center-hydrometries-arduino",
     "home-center-music-control": "github:SurionA/home-center-music-control",
     "home-center-radio-frequence-control": "github:SurionA/home-center-radio-frequence-control",
     "socket.io": "^2.0.3",
