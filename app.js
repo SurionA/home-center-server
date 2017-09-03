@@ -23,3 +23,8 @@ const hydrometriesArduino = require('home-center-hydrometries-arduino');
 hydrometriesArduino.initSocket(io);
 musicControl.initSocket(io);
 radioFrequenceControl.initSocket(io);
+
+const cronJobs = require('./lib/cron');
+
+cronJobs.start(hydrometriesArduino);
+
