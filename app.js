@@ -1,5 +1,6 @@
 const http = require('http');
 const fs = require('fs');
+const alert = require('./lib/alert/index');
 require('dotenv-safe').load({
     path: `${__dirname}/config/.env`,
     sample: `${__dirname}/config/.env.example`,
@@ -28,3 +29,20 @@ const cronJobs = require('./lib/cron');
 
 cronJobs.start(hydrometriesArduino);
 
+process.on('exit', () => {
+    const type = 'alert';
+    const content = 'process Home-center server down. Catch by event "exit"';
+
+    alert.sms.send(type, content)
+        .then(() => process.exit())
+        .catch(() => process.exit());
+});
+
+process.on('SIGINT', () => {
+    const type = 'alert';
+    const content = 'process Home-center server down. Catch by event SIGINT';
+
+    alert.sms.send(type, content)
+        .then(() => process.exit())
+        .catch(() => process.exit());
+});
