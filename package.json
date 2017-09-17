@@ -4,6 +4,7 @@
   "description": "NodeJS server to manage Home Center",
   "main": "index.js",
   "scripts": {
+    "start": "npm i && npm prune && node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "SurionA <frere.maxime@gmail.com>",
