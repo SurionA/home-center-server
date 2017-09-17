@@ -1,0 +1,27 @@
+[Unit]
+Description=Node.js Home Center Server
+
+[Service]
+ExecStart=$HOME/.nvm/nvm-exec npm start
+WorkingDirectory=$HOME/$SERVER/$DIRECTORY
+
+# Restart on crash
+Restart=always
+RestartSec=10
+
+# Output to syslog
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=nodejs-home-center
+
+# Env variable
+Environment=NODE_ENV=development NODE_VERSION=8.4.0
+
+# Kill all process on restart
+KillMode=control-group
+
+# User
+User=pi
+
+[Install]
+WantedBy=multi-user.target
