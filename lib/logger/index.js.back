@@ -1,0 +1,92 @@
+const { Logger, transports } = require('winston');
+const chalk = require('chalk');
+
+const logger = new (Logger)({
+    transports: [
+        new (transports.Console)({
+            level: process.env.NODE_ENV === 'DEV' ? 'debug' : 'info',
+            timestamp: () => Date.now(),
+            label: 'HomeCenter Sever',
+            formatter: (options) => {
+                const params = Object.create(options);
+
+                params.message = params.message || '';
+                params.meta = params.meta || '';
+
+                if (params.meta && Object.keys(params.meta).length) {
+                    params.message = params.meta.stack ? `${params.message} ${params.meta.stack}` : `${params.message} ${JSON.stringify(params.meta)}`;
+                }
+
+                return consoleFormat(params);
+            },
+        }),
+        new (transports.File)({
+            filename: 'application.log',
+            handleExceptions: false,
+            level: process.env.NODE_ENV === 'DEV' ? 'debug' : 'info',
+            timestamp: () => Date.now(),
+            label: 'application',
+            formatter: (options) => {
+                const params = Object.create(options);
+
+                params.message = params.message || '';
+                params.meta = params.meta || '';
+
+                if (params.meta && Object.keys(params.meta).length) {
+                    params.message = params.meta.stack ? `${params.message} ${params.meta.stack}` : `${params.message} ${JSON.stringify(params.meta)}`;
+                }
+
+                return `${new Date(options.timestamp()).toLocaleString()} [${options.label}] ${options.level.toUpperCase()}: ${options.message}`;
+            },
+        }),
+        new (transports.File)({
+            filename: 'error.log',
+            handleExceptions: false,
+            level: 'error',
+            timestamp: () => Date.now(),
+            label: 'error',
+            formatter: (options) => {
+                const params = Object.create(options);
+
+                params.message = params.message || '';
+                params.meta = params.meta || '';
+
+                if (params.meta && Object.keys(params.meta).length) {
+                    params.message = params.meta.stack ? `${params.message} ${params.meta.stack}` : `${params.message} ${JSON.stringify(params.meta)}`;
+                }
+
+                return `${new Date(options.timestamp()).toLocaleString()} [${options.label}] ${options.level.toUpperCase()}: ${options.message}`;
+            },
+        }),
+    ],
+});
+
+const consoleFormat = (options) => {
+    let colorized;
+
+    switch (options.level) {
+        case 'info':
+            colorized = chalk.greenBright;
+            break;
+        case 'debug':
+            colorized = chalk.blueBright;
+            break;
+        case 'verbose':
+            colorized = chalk.cyanBright;
+            break;
+        case 'warn':
+            colorized = chalk.yellowBright;
+            break;
+        case 'error':
+            colorized = chalk.redBright;
+            break;
+
+        default:
+            colorized = chalk.cyanBright;
+            break;
+    }
+
+    return `${new Date(options.timestamp()).toLocaleString()} ${chalk.magentaBright('[' + options.label + ']')} ${colorized(options.level.toUpperCase())}: ${options.level === 'error' ? chalk.red(options.message) : options.message}`;
+};
+
+module.exports = logger;
