@@ -8,9 +8,9 @@ require('dotenv-safe').load({
 });
 
 const CONSTANTS = require('./lib/constants');
-const logger = require('./lib/logger/index')(CONSTANTS.loggerLabelMain);
-const alert = require('./lib/alert/index');
+const { HClogger, HCalert: alert } = require('home-center-core');
 
+const logger = HClogger(CONSTANTS.loggerLabelMain);
 const server = http.createServer((req, res) => {
     fs.readFile('./index.html', 'utf-8', (error, content) => {
         res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -20,8 +20,9 @@ const server = http.createServer((req, res) => {
 const io = require('socket.io').listen(server);
 
 server.listen(process.env.PORT);
-logger.info('HomeCenter Server start...');
 
+logger.log('info', 'HomeCenter Server start...');
+logger.log('info', 'Initialize Socket connector');
 const radioFrequenceControl = require('home-center-radio-frequence-control');
 const musicControl = require('home-center-music-control');
 const hydrometriesArduino = require('home-center-hydrometries-arduino');
@@ -39,7 +40,8 @@ process.on('exit', () => {
     const content = 'process Home-center server down. Catch by event "exit"';
 
     logger.error(content);
-    alert.sms.send(type, content)
+    alert.sms
+        .send(type, content)
         .then(() => process.exit())
         .catch(() => process.exit());
 });
@@ -49,7 +51,8 @@ process.on('SIGINT', () => {
     const content = 'process Home-center server down. Catch by event SIGINT';
 
     logger.error(content);
-    alert.sms.send(type, content)
+    alert.sms
+        .send(type, content)
         .then(() => process.exit())
         .catch(() => process.exit());
 });
